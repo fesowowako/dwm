@@ -5,18 +5,17 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int splitstatus        = 1;        /* 1 for split status items */
-static const char *splitdelim       = ";";      /* Character used for separating status */
 static const char *fonts[]          = { "monospace:size=10" };
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char normbordercolor[] = "#073642";
+static const char normbgcolor[]     = "#002b36";
+static const char normfgcolor[]     = "#839496";
+static const char selbordercolor[]  = "#93a1a1";
+static const char selbgcolor[]      = "#839496";
+static const char selfgcolor[]      = "#002b36";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+        /*               fg           bg           border   */
+        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+        [SchemeSel] =  { selfgcolor,  selbgcolor,  selbordercolor },
 };
 
 /* tagging */
@@ -56,13 +55,11 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 
 static Key keys[] = {
         /* modifier                     key        function        argument */
-        { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-        { MODKEY,                       XK_Return, spawn,          {.v = termcmd} },
+        { MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
         { MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
         { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
         { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -98,7 +95,6 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
 };
