@@ -5,13 +5,14 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=9" };
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=10" };
 static const char normbordercolor[] = "#073642";
 static const char normbgcolor[]     = "#002b36";
 static const char normfgcolor[]     = "#839496";
 static const char selbordercolor[]  = "#93a1a1";
 static const char selbgcolor[]      = "#839496";
 static const char selfgcolor[]      = "#002b36";
+
 static const char *colors[][3]      = {
 	/*               fg           bg           border   */
 	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -63,6 +64,7 @@ static Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_d,          spawn,                  {.v = dmenucmd } },
 	{ MODKEY,             		XK_Return,     spawn,                  ESHCMD("st") },
+	{ MODKEY,                       XK_w,          spawn,                  ESHCMD("brave") },
 	{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
 	{ MODKEY,                       XK_k,          focusstack,             {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,          movestack,              {.i = +1 } },
@@ -100,4 +102,3 @@ static Button buttons[] = {
 };
 
 /* vim: set noexpandtab: */
-
